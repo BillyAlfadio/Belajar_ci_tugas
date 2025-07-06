@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class ProdukCategory extends Migration
+class TransactionDetail extends Migration
 {
     public function up()
     {
@@ -15,23 +15,28 @@ class ProdukCategory extends Migration
                 'unsigned' => TRUE,
                 'auto_increment' => TRUE
             ],
-            'nama' => [
-                'type' => 'VARCHAR',
-                'constraint' => 255,
-                'null' => FALSE,
+            'transaction_id' => [
+                'type' => 'INT',
+                'constraint' => 11,
+                'unsigned' => TRUE,
             ],
-            'harga' => [
-                'type' => 'DOUBLE',
-                'null' => FALSE,
+            'product_id' => [
+                'type' => 'INT',
+                'constraint' => 11,
+                'unsigned' => TRUE,
             ],
             'jumlah' => [
                 'type' => 'INT',
                 'constraint' => 5,
                 'null' => FALSE,
             ],
-            'foto' => [
-                'type' => 'VARCHAR',
-                'constraint' => 255,
+            'diskon' => [
+                'type' => 'DOUBLE',
+                'null' => TRUE,
+            ],
+            'subtotal_harga' => [
+                'type' => 'DOUBLE',
+                'null' => FALSE,
             ],
             'created_at' => [
                 'type' => 'datetime',
@@ -44,13 +49,11 @@ class ProdukCategory extends Migration
         ]);
 
         $this->forge->addKey('id', TRUE);
-        //$this->forge->createTable('ProdukCategory');//
+        $this->forge->createTable('transaction_detail');
     }
-
-    //--------------------------------------------------------------------
 
     public function down()
     {
-        $this->forge->dropTable('ProdukCategory');
+        $this->forge->dropTable('transaction_detail');
     }
 }

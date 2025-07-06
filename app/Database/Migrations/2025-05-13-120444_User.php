@@ -4,34 +4,37 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class ProdukCategory extends Migration
+class User extends Migration
 {
     public function up()
     {
         $this->forge->addField([
             'id' => [
                 'type' => 'INT',
-                'constraint' => 11,
                 'unsigned' => TRUE,
                 'auto_increment' => TRUE
             ],
-            'nama' => [
+            'username' => [
+                'type' => 'VARCHAR',
+                'constraint' => 255,
+                'null' => FALSE,
+                'unique' => TRUE,
+            ],
+            'email' => [
+                'type' => 'VARCHAR',
+                'constraint' => 255,
+                'null' => FALSE,
+                'unique' => TRUE,
+            ],
+            'password' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
                 'null' => FALSE,
             ],
-            'harga' => [
-                'type' => 'DOUBLE',
-                'null' => FALSE,
-            ],
-            'jumlah' => [
-                'type' => 'INT',
-                'constraint' => 5,
-                'null' => FALSE,
-            ],
-            'foto' => [
+            'role' => [
                 'type' => 'VARCHAR',
-                'constraint' => 255,
+                'constraint' => 50,
+                'null' => FALSE,
             ],
             'created_at' => [
                 'type' => 'datetime',
@@ -44,13 +47,13 @@ class ProdukCategory extends Migration
         ]);
 
         $this->forge->addKey('id', TRUE);
-        //$this->forge->createTable('ProdukCategory');//
+        $this->forge->createTable('user');
     }
 
     //--------------------------------------------------------------------
 
     public function down()
     {
-        $this->forge->dropTable('ProdukCategory');
+        $this->forge->dropTable('user');
     }
 }
